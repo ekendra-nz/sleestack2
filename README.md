@@ -1,6 +1,10 @@
 # SleeStack 2
  
-Web Framework stack using Sveltekit, Supabase with Skeleton UI
+Web framework stack using Sveltekit, Supabase with Skeleton UI
+
+https://github.com/ekendra-nz/sleestack2
+
+Uses Typescript: https://www.totaltypescript.com/
 
 ## Happy days!
  
