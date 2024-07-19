@@ -1,5 +1,5 @@
 <div class="container h-full mx-auto flex justify-left items-center mt-10">
-	<div class="space-y-10 text-left flex flex-col items-center">
+	<div class="space-y-10 text-left flex flex-col items-center mx-5">
 		<h2 class="text-primary-300 text-2xl">Why Mineral Therapy?</h2>
 		<p>
 			In our modern era, characterized by fast-paced lifestyles and readily available convenience

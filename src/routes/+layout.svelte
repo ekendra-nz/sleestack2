@@ -1,14 +1,12 @@
 <script lang="ts">
 	import '../app.postcss';
-	import { AppShell } from '@skeletonlabs/skeleton';
 	import Nav from '$lib/componenets/Nav.svelte';
 
 	// Toasts
-	import { initializeStores, Toast } from '@skeletonlabs/skeleton';
-	import { getToastStore } from '@skeletonlabs/skeleton';
-
+	import { AppShell, initializeStores, Toast, getToastStore } from '@skeletonlabs/skeleton';
 	initializeStores();
 	const toastStore = getToastStore();
+
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
 	import { storePopup } from '@skeletonlabs/skeleton';
@@ -16,7 +14,8 @@
 </script>
 
 <!-- Toasts -->
-<Toast />
+<!-- use position="b" for bottom "t" for top -->
+<Toast position="t" />
 <!-- App Shell -->
 <AppShell>
 	<svelte:fragment slot="header">

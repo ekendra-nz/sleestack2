@@ -1,13 +1,17 @@
 import { createClient } from '@supabase/supabase-js';
 import { writable } from 'svelte/store';
+import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
 
-const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export const supabase = createClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY);
 
 export const currentUser = writable((await supabase.auth.getUser()).data.user);
 
-supabase.auth.onAuthStateChange(async () => {
+supabase.auth.onAuthStateChange(async (event) => {
+	console.log('Supabase auth event is called: ' + event);
+
+	if (event === 'SIGNED_OUT') {
+		currentUser.set(null);
+		return;
+	}
 	currentUser.set((await supabase.auth.getUser()).data.user);
 });

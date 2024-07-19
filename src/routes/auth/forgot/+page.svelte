@@ -18,9 +18,9 @@
 				<div>
 					<form>
 						<div>
-							<label for="email-address" class="sr-only">Email address</label>
+							<label for="emailF-address" class="sr-only">Email address</label>
 							<input
-								id="email-address"
+								id="emailF-address"
 								name="email"
 								type="email"
 								autocomplete="email"

@@ -1,40 +1,83 @@
 <script lang="ts">
+	import { supabase } from '$lib/supabase';
+
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	import type { ToastSettings } from '@skeletonlabs/skeleton';
 
 	const toastStore = getToastStore();
 
-	let email: string = 'ekendra.teach@gmail.com';
-	let password: string = 'password';
+	let email: string = 'ekendra@gmail.com'; // empty this on production
+	let password: string = 'fjpgC3&rCk^Wd*'; // empty this on production
 	let loading: boolean = false;
 
-	function signInUser() {
-		console.log('Signing user in.');
+	interface Message {
+		status: 'success' | 'error' | 'warning';
+		text: string;
+	}
+
+	let message = { status: 'success', text: '' };
+
+	//
+
+	const signInUser = async () => {
 		loading = true;
+		const { data, error } = await supabase.auth.signInWithPassword({
+			email,
+			password
+		});
+
+		if (error) {
+			message = { status: 'error', text: 'Invalid password' };
+			console.log(error.message);
+		} else {
+			// logged in successfully
+			message = { status: 'success', text: 'Signed in.' };
+		}
 		const t: ToastSettings = {
-			message: 'Signed in.',
+			message: message.text,
 			timeout: 1500,
-			background: 'variant-filled-success'
+			background: 'variant-filled-' + message.status
 		};
 		toastStore.trigger(t);
-	}
 
-	function registerUser() {
+		loading = false;
+	};
+
+	const registerUser = async () => {
 		loading = true;
 
-		console.log('Registering User');
+		const { data, error } = await supabase.auth.signUp({
+			email,
+			password
+		});
+
+		if (error) {
+			message = { status: 'error', text: 'Incorrect email or password' };
+
+			console.log(error.message);
+		} else {
+			message = {
+				status: 'success',
+				text:
+					"We've sent an email to " + email + '. <br /> Please confirm your address to continue.'
+			};
+
+			console.log('Registering User');
+		}
 		const t: ToastSettings = {
-			message: "We've sent an email to ______. <br /> Please confirm your address to continue.",
+			message: message.text,
 			autohide: false,
-			background: 'variant-filled-success'
+			background: 'variant-filled-' + message.status
 		};
 		toastStore.trigger(t);
-	}
+		loading = false;
+	};
 </script>
 
 <div class="space-y-10 text-center flex flex-col items-center mr-16">
 	<div class="card p-4 mr-auto w-72 shadow-xl variant-glass-primary border border-primary-500">
 		<div>
+			<a href="/auth">auth (delete me)</a>
 			<form>
 				<div>
 					<label for="email-address" class="sr-only">Email address</label>
