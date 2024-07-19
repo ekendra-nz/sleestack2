@@ -77,7 +77,6 @@
 <div class="space-y-10 text-center flex flex-col items-center mr-16">
 	<div class="card p-4 mr-auto w-72 shadow-xl variant-glass-primary border border-primary-500">
 		<div>
-			<a href="/auth">auth (delete me)</a>
 			<form>
 				<div>
 					<label for="email-address" class="sr-only">Email address</label>
@@ -108,7 +107,7 @@
 					/>
 				</div>
 				<div class="flex flex-col items-end">
-					<a href="/auth/forgot" class="text-xs text-tertiary-400 hover:text-secondary-300"
+					<a href="/auth/reset_pwd" class="text-xs text-tertiary-400 hover:text-secondary-300"
 						>Forgot your password?</a
 					>
 				</div>

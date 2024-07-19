@@ -66,8 +66,8 @@
 					<div class="btn-group-vertical w-full">
 						<div class="bg-surface-800 p-2">{$currentUser.email}</div>
 
-						<a href="/" class="btn">Account settings</a>
-						<a href="/" class="btn">Survey Results</a>
+						<a href="/user" class="btn">Account settings</a>
+						<a href="/user/results" class="btn">Survey Results</a>
 						<a href="/" class="btn" on:click={handleSignOut}>Sign out</a>
 					</div>
 				</div>

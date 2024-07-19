@@ -9,9 +9,12 @@ export const currentUser = writable((await supabase.auth.getUser()).data.user);
 supabase.auth.onAuthStateChange(async (event) => {
 	console.log('Supabase auth event is called: ' + event);
 
-	if (event === 'SIGNED_OUT') {
+	if (event === 'SIGNED_IN') {
+		currentUser.set((await supabase.auth.getUser()).data.user);
+	} else if (event === 'SIGNED_OUT') {
 		currentUser.set(null);
 		return;
+	} else if (event === 'PASSWORD_RECOVERY') {
+		//
 	}
-	currentUser.set((await supabase.auth.getUser()).data.user);
 });
