@@ -21,7 +21,7 @@ PUBLIC_SUPABASE_URL=
 PUBLIC_SUPABASE_ANON_KEY=
 ```
 
-- Go to “Table Editor” and create a new table called profiles where the column id is a foreign key on ***auth.users***
+- Go to “Table Editor” and create a new table called profiles where the column id is of type UUID (not int) and is a foreign key on ***auth.users***
  
 (This is needed because the auth schema is not publicly available if we want to access user information. Therefore we create the data we want inside the profiles table.)
 
